@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selamat Datang di Sekolah Kita</title>
+    <title>PORTAL KEGIATAN SANTRI PPRM</title>
     <style>
         * {
             margin: 0;
@@ -13,384 +13,231 @@
         }
 
         :root {
-            --utama: #1a5f9e;
-            --kedua: #f97316;
-            --muda: #eaf4fc;
-            --gelap: #1e293b;
+            --utama: #2563eb;
+            --biru-muda: #3b82f6;
+            --ungu: #8b5cf6;
+            --hijau: #10b981;
+            --oranye: #f59e0b;
+            --merah: #ef4444;
+            --putih: #ffffff;
+            --abu-muda: #f8fafc;
+            --teks: #1e293b;
         }
 
         body {
-            line-height: 1.6;
-            color: var(--gelap);
+            background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--teks);
         }
 
-        /* Navigasi */
-        nav {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-container {
-            max-width: 1200px;
+        .container {
+            max-width: 850px;
             margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--utama);
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--gelap);
-            margin-left: 2rem;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--kedua);
-        }
-
-        /* Bagian Atas / Hero */
         header {
-            background: linear-gradient(135deg, var(--utama) 0%, #2563eb 100%);
-            color: white;
-            padding: 10rem 2rem 6rem;
             text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 20px;
+            background: var(--putih);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(37, 99, 235, 0.15);
         }
 
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        .header-img {
+            width: 100%;
+            max-height: 220px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 20px;
         }
 
-        header p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            opacity: 0.9;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.9rem 2rem;
-            background: var(--kedua);
-            color: white;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3);
-        }
-
-        /* Konten Umum */
-        section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
+        h1 {
             font-size: 2rem;
             color: var(--utama);
-            margin-bottom: 3rem;
-            position: relative;
+            font-weight: 800;
+            letter-spacing: 1px;
         }
 
-        .section-title::after {
-            content: '';
-            width: 80px;
-            height: 4px;
-            background: var(--kedua);
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
+        .subtitle {
+            color: #64748b;
+            margin-top: 8px;
+            font-size: 1rem;
         }
 
-        /* Tentang Sekolah */
-        .tentang {
-            background: var(--muda);
-            margin: 0;
-            max-width: 100%;
+        .section {
+            margin-bottom: 30px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            background: var(--putih);
         }
 
-        .tentang-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .tentang-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .tentang-text h3 {
-            font-size: 1.5rem;
-            color: var(--utama);
-            margin-bottom: 1rem;
-        }
-
-        .tentang-text p {
-            margin-bottom: 1rem;
-            color: #475569;
-        }
-
-        .tentang-gambar {
-            background: var(--utama);
-            height: 300px;
-            border-radius: 12px;
+        .section-header {
+            padding: 16px 24px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
+            gap: 10px;
         }
 
-        /* Visi Misi */
-        .visi-misi {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+        .harian .section-header { background: linear-gradient(90deg, var(--utama), var(--biru-muda)); }
+        .mingguan .section-header { background: linear-gradient(90deg, var(--ungu), #a78bfa); }
+        .bulanan .section-header { background: linear-gradient(90deg, var(--hijau), #34d399); }
+        .tahunan .section-header { background: linear-gradient(90deg, var(--oranye), #fbbf24); }
+
+        .section-body {
+            padding: 20px 24px;
         }
 
-        .card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            border-top: 4px solid var(--kedua);
-            transition: transform 0.3s;
+        .item {
+            padding: 14px 18px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            background: var(--abu-muda);
+            border-left: 4px solid;
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
+        .item:hover {
+            transform: translateX(6px);
+            background: #f1f5f9;
         }
 
-        .card h3 {
-            color: var(--utama);
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
+        .harian .item { border-left-color: var(--utama); }
+        .mingguan .item { border-left-color: var(--ungu); }
+        .bulanan .item { border-left-color: var(--hijau); }
+        .tahunan .item { border-left-color: var(--oranye); }
+
+        .item-label {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--teks);
         }
 
-        .card ul {
-            list-style-position: inside;
-            color: #475569;
+        .item-desc {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-top: 4px;
         }
 
-        .card ul li {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Fasilitas */
-        .fasilitas-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .fasilitas-item {
-            text-align: center;
-            padding: 2rem;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-        }
-
-        .fasilitas-item:hover {
-            background: var(--muda);
-        }
-
-        .fasilitas-item h4 {
-            color: var(--utama);
-            margin: 1rem 0;
-            font-size: 1.1rem;
-        }
-
-        /* Kontak */
-        .kontak {
-            background: var(--gelap);
-            color: white;
-            margin: 0;
-            max-width: 100%;
-        }
-
-        .kontak-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .kontak-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .kontak-item h4 {
-            margin-bottom: 1rem;
-            color: var(--kedua);
-        }
-
-        /* Footer */
         footer {
-            background: #0f172a;
-            color: #94a3b8;
             text-align: center;
-            padding: 2rem;
+            margin-top: 40px;
+            padding: 20px;
+            color: #64748b;
             font-size: 0.9rem;
         }
 
-        /* Responsif HP */
-        @media(max-width:768px) {
-            .nav-links {
-                display: none;
-            }
-            header h1 {
-                font-size: 2rem;
-            }
-            .tentang-content {
-                grid-template-columns: 1fr;
-            }
+        @media (max-width: 600px) {
+            h1 { font-size: 1.5rem; }
+            .section-header { font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <img src="https://i.postimg.cc/ZRjt64B4/images.jpg" alt="Gambar Sekolah/Pondok" class="header-img">
+            <h1>PORTAL KEGIATAN SANTRI PPRM</h1>
+            <p class="subtitle">Sumber Informasi Kegiatan Santri</p>
+        </header>
 
-    <!-- Navigasi -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">🏫 Sekolah Kita</div>
-            <div class="nav-links">
-                <a href="#beranda">Beranda</a>
-                <a href="#tentang">Tentang</a>
-                <a href="#visimisi">Visi & Misi</a>
-                <a href="#fasilitas">Fasilitas</a>
-                <a href="#kontak">Kontak</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Bagian Atas -->
-    <header id="beranda">
-        <h1>Selamat Datang di Sekolah Kita</h1>
-        <p>Mencetak generasi yang cerdas, berakhlak mulia, dan siap menghadapi masa depan</p>
-        <a href="#tentang" class="btn">Pelajari Lebih Lanjut</a>
-    </header>
-
-    <!-- Tentang Sekolah -->
-    <section class="tentang" id="tentang">
-        <div class="tentang-container">
-            <h2 class="section-title">Tentang Sekolah Kami</h2>
-            <div class="tentang-content">
-                <div class="tentang-text">
-                    <h3>Sekolah Berprestasi & Berkualitas</h3>
-                    <p>Sekolah kami berdiri dengan tujuan memberikan pendidikan terbaik bagi generasi penerus bangsa. Dengan tenaga pengajar yang berpengalaman dan fasilitas lengkap, kami berkomitmen mencetak siswa-siswi yang berilmu dan berakhlak.</p>
-                    <p>Kami tidak hanya fokus pada nilai akademik, tetapi juga pembentukan karakter, keterampilan, dan kepribadian siswa agar menjadi manusia yang bermanfaat bagi masyarakat.</p>
+        <div class="section harian">
+            <div class="section-header">📅 Harian</div>
+            <div class="section-body">
+                <div class="item">
+                    <div class="item-label">📚 SMP</div>
+                    <div class="item-desc">Jadwal dan kegiatan harian santri tingkat SMP</div>
                 </div>
-                <div class="tentang-gambar">
-                    📷 Gambar Sekolah
+                <div class="item">
+                    <div class="item-label">📖 MA</div>
+                    <div class="item-desc">Jadwal dan kegiatan harian santri tingkat MA</div>
+                </div>
+                <div class="item">
+                    <div class="item-label">🎓 KULIAH</div>
+                    <div class="item-desc">Jadwal dan kegiatan harian santri tingkat Kuliah</div>
+                </div>
+                <div class="item">
+                    <div class="item-label">🛠️ KHIDMAH</div>
+                    <div class="item-desc">Jadwal dan tugas harian khidmah santri</div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Visi & Misi -->
-    <section id="visimisi">
-        <h2 class="section-title">Visi & Misi</h2>
-        <div class="visi-misi">
-            <div class="card">
-                <h3>🎯 Visi</h3>
-                <p>Menjadi sekolah unggulan yang menghasilkan lulusan beriman, berilmu, berakhlak mulia, dan berwawasan luas.</p>
-            </div>
-            <div class="card">
-                <h3>🚀 Misi</h3>
-                <ul>
-                    <li>Meningkatkan kualitas pembelajaran yang efektif</li>
-                    <li>Membentuk karakter siswa yang berbudi luhur</li>
-                    <li>Menyediakan lingkungan belajar yang nyaman</li>
-                    <li>Mengembangkan potensi dan bakat setiap siswa</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Fasilitas -->
-    <section id="fasilitas">
-        <h2 class="section-title">Fasilitas Sekolah</h2>
-        <div class="fasilitas-grid">
-            <div class="fasilitas-item">
-                <h4>📚 Perpustakaan</h4>
-                <p>Koleksi buku lengkap & nyaman</p>
-            </div>
-            <div class="fasilitas-item">
-                <h4>💻 Lab Komputer</h4>
-                <p>Perangkat modern & terbaru</p>
-            </div>
-            <div class="fasilitas-item">
-                <h4>🔬 Laboratorium</h4>
-                <p>Untuk eksperimen sains</p>
-            </div>
-            <div class="fasilitas-item">
-                <h4>⚡ Ruang Kelas</h4>
-                <p>Bersih, nyaman & memadai</p>
-            </div>
-            <div class="fasilitas-item">
-                <h4>🏟️ Lapangan Olahraga</h4>
-                <p>Luas & serbaguna</p>
-            </div>
-            <div class="fasilitas-item">
-                <h4>🌳 Lingkungan Hijau</h4>
-                <p>Asri, sejuk & bersih</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Kontak -->
-    <section class="kontak" id="kontak">
-        <div class="kontak-container">
-            <h2 class="section-title" style="color: white;">Hubungi Kami</h2>
-            <div class="kontak-info">
-                <div class="kontak-item">
-                    <h4>📍 Alamat</h4>
-                    <p>Jl. Pendidikan No. 123, Kota Surabaya, Jawa Timur</p>
+        <div class="section mingguan">
+            <div class="section-header">🗓️ Mingguan</div>
+            <div class="section-body">
+                <div class="item">
+                    <div class="item-label">📚 SMP</div>
+                    <div class="item-desc">Program dan kegiatan rutin setiap minggu — SMP</div>
                 </div>
-                <div class="kontak-item">
-                    <h4>📞 Telepon</h4>
-                    <p>(031) 1234567</p>
-                    <p>0812-3456-7890</p>
+                <div class="item">
+                    <div class="item-label">📖 MA</div>
+                    <div class="item-desc">Program dan kegiatan rutin setiap minggu — MA</div>
                 </div>
-                <div class="kontak-item">
-                    <h4>✉️ Email</h4>
-                    <p>info@sekolahkita.sch.id</p>
+                <div class="item">
+                    <div class="item-label">🎓 KULIAH</div>
+                    <div class="item-desc">Program dan kegiatan rutin setiap minggu — Kuliah</div>
+                </div>
+                <div class="item">
+                    <div class="item-label">🛠️ KHIDMAH</div>
+                    <div class="item-desc">Penugasan dan evaluasi khidmah mingguan</div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Sekolah Kita. Semua Hak Dilindungi. Dibuat dengan ❤️ untuk pendidikan.</p>
-    </footer>
+        <div class="section bulanan">
+            <div class="section-header">📆 Bulanan</div>
+            <div class="section-body">
+                <div class="item">
+                    <div class="item-label">📚 SMP</div>
+                    <div class="item-desc">Target, program & evaluasi bulanan — SMP</div>
+                </div>
+                <div class="item">
+                    <div class="item-label">📖 MA</div>
+                    <div class="item-desc">Target, program & evaluasi bulanan — MA</div>
+                </div>
+                <div class="item">
+                    <div class="item-label">🎓 KULIAH</div>
+                    <div class="item-desc">Target, program & evaluasi bulanan — Kuliah</div>
+                </div>
+                <div class="item">
+                    <div class="item-label">🛠️ KHIDMAH</div>
+                    <div class="item-desc">Rencana dan penilaian kinerja khidmah bulanan</div>
+                </div>
+            </div>
+        </div>
 
+        <div class="section tahunan">
+            <div class="section-header">🗓️ Tahunan</div>
+            <div class="section-body">
+                <div class="item">
+                    <div class="item-label">📚 SMP</div>
+                    <div class="item-desc">Kalender pendidikan & agenda besar tahunan — SMP</div>
+                </div>
+                <div class="item">
+                    <div class="item-label">📖 MA</div>
+                    <div class="item-desc">Kalender pendidikan & agenda besar tahunan — MA</div>
+                </div>
+                <div class="item">
+                    <div class="item-label">🎓 KULIAH</div>
+                    <div class="item-desc">Rencana akademik dan kegiatan besar tahunan — Kuliah</div>
+                </div>
+                <div class="item">
+                    <div class="item-label">🛠️ KHIDMAH</div>
+                    <div class="item-desc">Program kerja dan pengembangan jangka panjang</div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            &copy; 2025 PORTAL KEGIATAN SANTRI PPRM — Semua Hak Dilindungi
+        </footer>
+    </div>
 </body>
-  </html>
-  
+</html>
