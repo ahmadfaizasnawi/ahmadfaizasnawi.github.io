@@ -23,6 +23,7 @@
 
 body {
     background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+    background-attachment: fixed;
     min-height: 100vh;
     padding: 20px;
     color: var(--teks);
@@ -40,6 +41,7 @@ header {
     background: white;
     border-radius: 20px;
     box-shadow: 0 10px 40px #2563eb20;
+    animation: fadeDariAtas 0.8s ease-out;
 }
 
 .header-img {
@@ -48,6 +50,11 @@ header {
     object-fit: cover;
     border-radius: 15px;
     margin-bottom: 20px;
+    transition: transform 0.4s ease;
+}
+
+.header-img:hover {
+    transform: scale(1.02);
 }
 
 h1 {
@@ -59,6 +66,7 @@ h1 {
 .subtitle {
     color: #64748b;
     margin-top: 8px;
+    animation: fadeMasuk 1s ease-out 0.3s both;
 }
 
 .section {
@@ -67,29 +75,50 @@ h1 {
     overflow: hidden;
     background: white;
     box-shadow: 0 6px 20px #00000012;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideMasuk 0.7s ease forwards;
 }
+
+.section:nth-child(2) { animation-delay: 0.1s; }
+.section:nth-child(3) { animation-delay: 0.2s; }
+.section:nth-child(4) { animation-delay: 0.3s; }
+.section:nth-child(5) { animation-delay: 0.4s; }
 
 .section-header {
     padding: 16px 24px;
     font-size: 1.2rem;
     font-weight: bold;
     color: white;
+    transition: padding 0.3s ease;
+}
+
+.section-header:hover {
+    padding-left: 30px;
 }
 
 .harian .section-header {
     background: linear-gradient(90deg, #2563eb, #3b82f6);
+    background-size: 200% 100%;
+    animation: gradientGeser 8s linear infinite;
 }
 
 .mingguan .section-header {
     background: linear-gradient(90deg, #8b5cf6, #a78bfa);
+    background-size: 200% 100%;
+    animation: gradientGeser 8s linear infinite;
 }
 
 .bulanan .section-header {
     background: linear-gradient(90deg, #10b981, #34d399);
+    background-size: 200% 100%;
+    animation: gradientGeser 8s linear infinite;
 }
 
 .tahunan .section-header {
     background: linear-gradient(90deg, #f59e0b, #fbbf24);
+    background-size: 200% 100%;
+    animation: gradientGeser 8s linear infinite;
 }
 
 .section-body {
@@ -103,7 +132,24 @@ h1 {
     background: #f8fafc;
     border-left: 4px solid;
     cursor: pointer;
-    transition: 0.2s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.5s ease;
+}
+
+.item:hover::before {
+    left: 100%;
 }
 
 .item:last-child {
@@ -111,12 +157,18 @@ h1 {
 }
 
 .item:hover {
-    transform: translateX(5px);
+    transform: translateX(8px) scale(1.01);
     background: #eef2ff;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+}
+
+.item:active {
+    transform: translateX(8px) scale(0.98);
 }
 
 .item:focus-visible {
     outline: 2px solid var(--utama);
+    outline-offset: 2px;
 }
 
 .harian .item { border-color: #2563eb; }
@@ -127,6 +179,11 @@ h1 {
 .item-label {
     font-weight: bold;
     font-size: 1rem;
+    transition: color 0.2s ease;
+}
+
+.item:hover .item-label {
+    color: var(--utama);
 }
 
 .item-desc {
@@ -141,35 +198,45 @@ footer {
     padding: 20px;
     color: #64748b;
     font-size: 0.9rem;
+    animation: fadeMasuk 1s ease-out 0.6s both;
 }
 
-/* ============= POPUP BESAR ============= */
+/* ============= POPUP BESAR & ANIMASI ============= */
 .modal {
     display: none;
     position: fixed;
     inset: 0;
     z-index: 1000;
     padding: 10px;
-    background: rgba(15, 23, 42, 0.6);
+    background: rgba(15, 23, 42, 0);
     align-items: center;
     justify-content: center;
+    transition: background 0.4s ease;
 }
 
 .modal.active {
     display: flex;
+    background: rgba(15, 23, 42, 0.6);
 }
 
 .modal-content {
     width: 94%;
     max-width: 650px;
-    height: 85vh;
-    max-height: 90vh;
+    height: 90vh;
+    max-height: 92vh;
     display: flex;
     flex-direction: column;
     background: white;
     border-radius: 18px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-    animation: muncul 0.25s ease;
+    opacity: 0;
+    transform: scale(0.8) translateY(30px);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal.active .modal-content {
+    opacity: 1;
+    transform: scale(1) translateY(0);
 }
 
 .modal-header {
@@ -185,6 +252,7 @@ footer {
 
 .modal-header h2 {
     font-size: 1.2rem;
+    animation: teksMasuk 0.4s ease 0.1s both;
 }
 
 .tutup-x {
@@ -194,6 +262,12 @@ footer {
     font-size: 28px;
     cursor: pointer;
     line-height: 1;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.tutup-x:hover {
+    transform: rotate(90deg);
+    color: #fecaca;
 }
 
 .modal-body {
@@ -210,6 +284,7 @@ footer {
     color: #94a3b8;
     font-style: italic;
     text-align: center;
+    animation: fadeMasuk 0.6s ease-out 0.2s both;
 }
 
 .modal-footer {
@@ -227,21 +302,57 @@ footer {
     padding: 10px 28px;
     font-size: 15px;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: all 0.3s ease;
+    transform-origin: center;
 }
 
 .btn-tutup:hover {
     background: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
-@keyframes muncul {
+.btn-tutup:active {
+    transform: translateY(0);
+}
+
+/* ============= KEYFRAMES ============= */
+@keyframes fadeDariAtas {
     from {
         opacity: 0;
-        transform: scale(0.95) translateY(10px);
+        transform: translateY(-30px);
     }
     to {
         opacity: 1;
-        transform: scale(1) translateY(0);
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeMasuk {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideMasuk {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes gradientGeser {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+@keyframes teksMasuk {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
     }
 }
 
@@ -253,7 +364,7 @@ footer {
     
     .modal-content {
         width: 96%;
-        height: 88vh;
+        height: 92vh;
     }
 }
 </style>
@@ -269,7 +380,7 @@ footer {
         class="header-img"
     >
     <h1>PORTAL KEGIATAN SANTRI PPRM</h1>
-    <p class="subtitle">Sumber Informasi Kegiatan Santri</p>
+    <p class="subtitle">✨ Sumber Informasi Kegiatan Santri</p>
 </header>
 
 <!-- HARIAN -->
@@ -379,7 +490,7 @@ footer {
         </div>
         <div class="modal-body">
             <div class="ruang-kosong" id="isiKegiatan">
-                Di sini nanti bisa diisi jadwal kegiatan masing-masing jenjang
+                📝 Di sini nanti bisa diisi jadwal kegiatan masing-masing jenjang
             </div>
         </div>
         <div class="modal-footer">
@@ -434,6 +545,3 @@ document.addEventListener("keydown", function(event) {
 
 </body>
 </html>
-
-
-
