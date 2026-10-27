@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -144,14 +143,14 @@ footer {
     font-size: 0.9rem;
 }
 
-/* POPUP */
+/* ============= POPUP BESAR ============= */
 .modal {
     display: none;
     position: fixed;
     inset: 0;
     z-index: 1000;
-    padding: 20px;
-    background: #0f172a99;
+    padding: 10px;
+    background: rgba(15, 23, 42, 0.6);
     align-items: center;
     justify-content: center;
 }
@@ -161,24 +160,26 @@ footer {
 }
 
 .modal-content {
-    width: 100%;
-    max-width: 600px;
-    min-height: 300px;
-    max-height: 85vh;
-    overflow-y: auto;
+    width: 94%;
+    max-width: 650px;
+    height: 85vh;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
     background: white;
     border-radius: 18px;
-    animation: muncul 0.2s ease;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    animation: muncul 0.25s ease;
 }
 
 .modal-header {
     background: var(--utama);
     color: white;
-    padding: 20px;
+    padding: 20px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
+    flex-shrink: 0;
     border-radius: 18px 18px 0 0;
 }
 
@@ -190,23 +191,32 @@ footer {
     background: none;
     border: none;
     color: white;
-    font-size: 30px;
+    font-size: 28px;
     cursor: pointer;
+    line-height: 1;
 }
 
 .modal-body {
     padding: 24px;
-    min-height: 190px;
+    flex-grow: 1;
+    overflow-y: auto;
 }
 
 .ruang-kosong {
-    min-height: 150px;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    font-style: italic;
+    text-align: center;
 }
 
 .modal-footer {
     padding: 16px 24px;
     border-top: 1px solid #e2e8f0;
     text-align: right;
+    flex-shrink: 0;
 }
 
 .btn-tutup {
@@ -214,8 +224,10 @@ footer {
     color: white;
     border: none;
     border-radius: 8px;
-    padding: 11px 24px;
+    padding: 10px 28px;
+    font-size: 15px;
     cursor: pointer;
+    transition: background 0.2s;
 }
 
 .btn-tutup:hover {
@@ -225,11 +237,11 @@ footer {
 @keyframes muncul {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: scale(0.95) translateY(10px);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: scale(1) translateY(0);
     }
 }
 
@@ -238,6 +250,11 @@ footer {
     h1 { font-size: 1.5rem; }
     .section-header { font-size: 1.1rem; }
     .section-body { padding: 15px; }
+    
+    .modal-content {
+        width: 96%;
+        height: 88vh;
+    }
 }
 </style>
 </head>
@@ -259,31 +276,22 @@ footer {
 <section class="section harian">
     <div class="section-header">📅 Harian</div>
     <div class="section-body">
-
-        <div class="item" role="button" tabindex="0"
-             data-periode="Harian" data-jenjang="SMP">
+        <div class="item" role="button" tabindex="0" data-periode="Harian" data-jenjang="SMP">
             <div class="item-label">📚 SMP</div>
             <div class="item-desc">Jadwal dan kegiatan harian santri tingkat SMP</div>
         </div>
-
-        <div class="item" role="button" tabindex="0"
-             data-periode="Harian" data-jenjang="MA">
+        <div class="item" role="button" tabindex="0" data-periode="Harian" data-jenjang="MA">
             <div class="item-label">📖 MA</div>
             <div class="item-desc">Jadwal dan kegiatan harian santri tingkat MA</div>
         </div>
-
-        <div class="item" role="button" tabindex="0"
-             data-periode="Harian" data-jenjang="KULIAH">
+        <div class="item" role="button" tabindex="0" data-periode="Harian" data-jenjang="KULIAH">
             <div class="item-label">🎓 KULIAH</div>
             <div class="item-desc">Jadwal dan kegiatan harian santri tingkat Kuliah</div>
         </div>
-
-        <div class="item" role="button" tabindex="0"
-             data-periode="Harian" data-jenjang="KHIDMAH">
+        <div class="item" role="button" tabindex="0" data-periode="Harian" data-jenjang="KHIDMAH">
             <div class="item-label">🛠️ KHIDMAH</div>
             <div class="item-desc">Jadwal dan tugas harian khidmah santri</div>
         </div>
-
     </div>
 </section>
 
@@ -291,31 +299,22 @@ footer {
 <section class="section mingguan">
     <div class="section-header">🗓️ Mingguan</div>
     <div class="section-body">
-
-        <div class="item" role="button" tabindex="0"
-             data-periode="Mingguan" data-jenjang="SMP">
+        <div class="item" role="button" tabindex="0" data-periode="Mingguan" data-jenjang="SMP">
             <div class="item-label">📚 SMP</div>
             <div class="item-desc">Program dan kegiatan rutin setiap minggu — SMP</div>
         </div>
-
-        <div class="item" role="button" tabindex="0"
-             data-periode="Mingguan" data-jenjang="MA">
+        <div class="item" role="button" tabindex="0" data-periode="Mingguan" data-jenjang="MA">
             <div class="item-label">📖 MA</div>
             <div class="item-desc">Program dan kegiatan rutin setiap minggu — MA</div>
         </div>
-
-        <div class="item" role="button" tabindex="0"
-             data-periode="Mingguan" data-jenjang="KULIAH">
+        <div class="item" role="button" tabindex="0" data-periode="Mingguan" data-jenjang="KULIAH">
             <div class="item-label">🎓 KULIAH</div>
             <div class="item-desc">Program dan kegiatan rutin setiap minggu — Kuliah</div>
         </div>
-
-        <div class="item" role="button" tabindex="0"
-             data-periode="Mingguan" data-jenjang="KHIDMAH">
+        <div class="item" role="button" tabindex="0" data-periode="Mingguan" data-jenjang="KHIDMAH">
             <div class="item-label">🛠️ KHIDMAH</div>
             <div class="item-desc">Penugasan dan evaluasi khidmah mingguan</div>
         </div>
-
     </div>
 </section>
 
@@ -323,31 +322,22 @@ footer {
 <section class="section bulanan">
     <div class="section-header">📆 Bulanan</div>
     <div class="section-body">
-
-        <div class="item" role="button" tabindex="0"
-             data-periode="Bulanan" data-jenjang="SMP">
+        <div class="item" role="button" tabindex="0" data-periode="Bulanan" data-jenjang="SMP">
             <div class="item-label">📚 SMP</div>
             <div class="item-desc">Target, program dan evaluasi bulanan — SMP</div>
         </div>
-
-        <div class="item" role="button" tabindex="0"
-             data-periode="Bulanan" data-jenjang="MA">
+        <div class="item" role="button" tabindex="0" data-periode="Bulanan" data-jenjang="MA">
             <div class="item-label">📖 MA</div>
             <div class="item-desc">Target, program dan evaluasi bulanan — MA</div>
         </div>
-
-        <div class="item" role="button" tabindex="0"
-             data-periode="Bulanan" data-jenjang="KULIAH">
+        <div class="item" role="button" tabindex="0" data-periode="Bulanan" data-jenjang="KULIAH">
             <div class="item-label">🎓 KULIAH</div>
             <div class="item-desc">Target, program dan evaluasi bulanan — Kuliah</div>
         </div>
-
-        <div class="item" role="button" tabindex="0"
-             data-periode="Bulanan" data-jenjang="KHIDMAH">
+        <div class="item" role="button" tabindex="0" data-periode="Bulanan" data-jenjang="KHIDMAH">
             <div class="item-label">🛠️ KHIDMAH</div>
             <div class="item-desc">Rencana dan penilaian kinerja khidmah bulanan</div>
         </div>
-
     </div>
 </section>
 
@@ -355,31 +345,22 @@ footer {
 <section class="section tahunan">
     <div class="section-header">🗓️ Tahunan</div>
     <div class="section-body">
-
-        <div class="item" role="button" tabindex="0"
-             data-periode="Tahunan" data-jenjang="SMP">
+        <div class="item" role="button" tabindex="0" data-periode="Tahunan" data-jenjang="SMP">
             <div class="item-label">📚 SMP</div>
             <div class="item-desc">Kalender pendidikan dan agenda tahunan — SMP</div>
         </div>
-
-        <div class="item" role="button" tabindex="0"
-             data-periode="Tahunan" data-jenjang="MA">
+        <div class="item" role="button" tabindex="0" data-periode="Tahunan" data-jenjang="MA">
             <div class="item-label">📖 MA</div>
             <div class="item-desc">Kalender pendidikan dan agenda tahunan — MA</div>
         </div>
-
-        <div class="item" role="button" tabindex="0"
-             data-periode="Tahunan" data-jenjang="KULIAH">
+        <div class="item" role="button" tabindex="0" data-periode="Tahunan" data-jenjang="KULIAH">
             <div class="item-label">🎓 KULIAH</div>
             <div class="item-desc">Rencana akademik dan kegiatan tahunan — Kuliah</div>
         </div>
-
-        <div class="item" role="button" tabindex="0"
-             data-periode="Tahunan" data-jenjang="KHIDMAH">
+        <div class="item" role="button" tabindex="0" data-periode="Tahunan" data-jenjang="KHIDMAH">
             <div class="item-label">🛠️ KHIDMAH</div>
             <div class="item-desc">Program kerja dan pengembangan jangka panjang</div>
         </div>
-
     </div>
 </section>
 
@@ -389,23 +370,18 @@ footer {
 
 </div>
 
-<!-- POPUP ISI KEGIATAN -->
-<div class="modal" id="modalKegiatan"
-     role="dialog" aria-modal="true"
-     aria-labelledby="judulPopup">
-
+<!-- POPUP -->
+<div class="modal" id="modalKegiatan" role="dialog" aria-modal="true" aria-labelledby="judulPopup">
     <div class="modal-content">
         <div class="modal-header">
             <h2 id="judulPopup">Kegiatan Santri</h2>
-            <button class="tutup-x" id="tutupX"
-                    aria-label="Tutup popup">&times;</button>
+            <button class="tutup-x" id="tutupX" aria-label="Tutup popup">&times;</button>
         </div>
-
         <div class="modal-body">
-            <!-- Isi kegiatan sengaja dikosongkan -->
-            <div class="ruang-kosong" id="isiKegiatan"></div>
+            <div class="ruang-kosong" id="isiKegiatan">
+                Di sini nanti bisa diisi jadwal kegiatan masing-masing jenjang
+            </div>
         </div>
-
         <div class="modal-footer">
             <button class="btn-tutup" id="tutupBtn">Tutup</button>
         </div>
@@ -422,22 +398,16 @@ const tutupBtn = document.getElementById("tutupBtn");
 function bukaPopup(item) {
     const periode = item.dataset.periode;
     const jenjang = item.dataset.jenjang;
-
     judulPopup.textContent = periode + " - " + jenjang;
-
-    // Pastikan isi selalu kosong saat dibuka
     isiKegiatan.replaceChildren();
-
     modal.classList.add("active");
     tutupBtn.focus();
 }
 
-// Aktifkan seluruh menu
 document.querySelectorAll(".item").forEach(function(item) {
     item.addEventListener("click", function() {
         bukaPopup(item);
     });
-
     item.addEventListener("keydown", function(event) {
         if (event.key === "Enter" || event.key === " ") {
             event.preventDefault();
@@ -446,7 +416,6 @@ document.querySelectorAll(".item").forEach(function(item) {
     });
 });
 
-// Tutup popup
 function tutupPopup() {
     modal.classList.remove("active");
 }
@@ -454,22 +423,17 @@ function tutupPopup() {
 tutupX.addEventListener("click", tutupPopup);
 tutupBtn.addEventListener("click", tutupPopup);
 
-// Tutup jika bagian luar popup diklik
 modal.addEventListener("click", function(event) {
-    if (event.target === modal) {
-        tutupPopup();
-    }
+    if (event.target === modal) tutupPopup();
 });
 
-// Tutup dengan tombol Escape
 document.addEventListener("keydown", function(event) {
-    if (event.key === "Escape" && modal.classList.contains("active")) {
-        tutupPopup();
-    }
+    if (event.key === "Escape" && modal.classList.contains("active")) tutupPopup();
 });
 </script>
 
 </body>
 </html>
+
 
 
