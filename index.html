@@ -2,499 +2,474 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PORTAL KEGIATAN SANTRI PPRM</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PORTAL KEGIATAN SANTRI PPRM</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
 
-        :root {
-            --utama: #2563eb;
-            --biru-muda: #3b82f6;
-            --ungu: #8b5cf6;
-            --hijau: #10b981;
-            --oranye: #f59e0b;
-            --merah: #ef4444;
-            --putih: #ffffff;
-            --abu-muda: #f8fafc;
-            --teks: #1e293b;
-        }
+:root {
+    --utama: #2563eb;
+    --ungu: #8b5cf6;
+    --hijau: #10b981;
+    --oranye: #f59e0b;
+    --teks: #1e293b;
+}
 
-        body {
-            background: linear-gradient(135deg, #eef2ff, #e0e7ff);
-            min-height: 100vh;
-            padding: 20px;
-            color: var(--teks);
-        }
+body {
+    background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+    min-height: 100vh;
+    padding: 20px;
+    color: var(--teks);
+}
 
-        .container {
-            max-width: 850px;
-            margin: 0 auto;
-        }
+.container {
+    max-width: 850px;
+    margin: auto;
+}
 
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 30px 20px;
-            background: var(--putih);
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(37, 99, 235, 0.15);
-        }
+header {
+    text-align: center;
+    margin-bottom: 35px;
+    padding: 30px 20px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px #2563eb20;
+}
 
-        .header-img {
-            width: 100%;
-            max-height: 220px;
-            object-fit: cover;
-            border-radius: 15px;
-            margin-bottom: 20px;
-        }
+.header-img {
+    width: 100%;
+    max-height: 220px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
 
-        h1 {
-            font-size: 2rem;
-            color: var(--utama);
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
+h1 {
+    font-size: 2rem;
+    color: var(--utama);
+    font-weight: 800;
+}
 
-        .subtitle {
-            color: #64748b;
-            margin-top: 8px;
-        }
+.subtitle {
+    color: #64748b;
+    margin-top: 8px;
+}
 
-        .section {
-            margin-bottom: 30px;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-            background: var(--putih);
-        }
+.section {
+    margin-bottom: 25px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 6px 20px #00000012;
+}
 
-        .section-header {
-            padding: 16px 24px;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: white;
-        }
+.section-header {
+    padding: 16px 24px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+}
 
-        .harian .section-header {
-            background: linear-gradient(90deg, var(--utama), var(--biru-muda));
-        }
+.harian .section-header {
+    background: linear-gradient(90deg, #2563eb, #3b82f6);
+}
 
-        .mingguan .section-header {
-            background: linear-gradient(90deg, var(--ungu), #a78bfa);
-        }
+.mingguan .section-header {
+    background: linear-gradient(90deg, #8b5cf6, #a78bfa);
+}
 
-        .bulanan .section-header {
-            background: linear-gradient(90deg, var(--hijau), #34d399);
-        }
+.bulanan .section-header {
+    background: linear-gradient(90deg, #10b981, #34d399);
+}
 
-        .tahunan .section-header {
-            background: linear-gradient(90deg, var(--oranye), #fbbf24);
-        }
+.tahunan .section-header {
+    background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
 
-        .section-body {
-            padding: 20px 24px;
-        }
+.section-body {
+    padding: 20px;
+}
 
-        .item {
-            padding: 14px 18px;
-            margin-bottom: 10px;
-            border-radius: 10px;
-            background: var(--abu-muda);
-            border-left: 4px solid;
-            transition: 0.3s;
-            cursor: pointer;
-        }
+.item {
+    padding: 15px 18px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background: #f8fafc;
+    border-left: 4px solid;
+    cursor: pointer;
+    transition: 0.2s;
+}
 
-        .item:last-child {
-            margin-bottom: 0;
-        }
+.item:last-child {
+    margin-bottom: 0;
+}
 
-        .item:hover {
-            transform: translateX(5px);
-            background: #eaf0f8;
-        }
+.item:hover {
+    transform: translateX(5px);
+    background: #eef2ff;
+}
 
-        .item:focus-visible {
-            outline: 3px solid var(--biru-muda);
-            outline-offset: 2px;
-        }
+.item:focus-visible {
+    outline: 2px solid var(--utama);
+}
 
-        .harian .item { border-left-color: var(--utama); }
-        .mingguan .item { border-left-color: var(--ungu); }
-        .bulanan .item { border-left-color: var(--hijau); }
-        .tahunan .item { border-left-color: var(--oranye); }
+.harian .item { border-color: #2563eb; }
+.mingguan .item { border-color: #8b5cf6; }
+.bulanan .item { border-color: #10b981; }
+.tahunan .item { border-color: #f59e0b; }
 
-        .item-label {
-            font-weight: 600;
-            font-size: 1rem;
-        }
+.item-label {
+    font-weight: bold;
+    font-size: 1rem;
+}
 
-        .item-desc {
-            font-size: 0.9rem;
-            color: #64748b;
-            margin-top: 4px;
-        }
+.item-desc {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-top: 5px;
+}
 
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            color: #64748b;
-            font-size: 0.9rem;
-        }
+footer {
+    text-align: center;
+    margin-top: 35px;
+    padding: 20px;
+    color: #64748b;
+    font-size: 0.9rem;
+}
 
-        /* Popup isi kegiatan */
+/* POPUP */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    padding: 20px;
+    background: #0f172a99;
+    align-items: center;
+    justify-content: center;
+}
 
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 1000;
-            background: rgba(15, 23, 42, 0.65);
-            padding: 20px;
-            align-items: center;
-            justify-content: center;
-        }
+.modal.active {
+    display: flex;
+}
 
-        .modal.active {
-            display: flex;
-        }
+.modal-content {
+    width: 100%;
+    max-width: 600px;
+    min-height: 300px;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: white;
+    border-radius: 18px;
+    animation: muncul 0.2s ease;
+}
 
-        .modal-content {
-            background: white;
-            width: 100%;
-            max-width: 600px;
-            min-height: 280px;
-            max-height: 85vh;
-            overflow-y: auto;
-            border-radius: 18px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-            animation: muncul 0.2s ease;
-        }
+.modal-header {
+    background: var(--utama);
+    color: white;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border-radius: 18px 18px 0 0;
+}
 
-        .modal-header {
-            background: var(--utama);
-            color: white;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            border-radius: 18px 18px 0 0;
-        }
+.modal-header h2 {
+    font-size: 1.2rem;
+}
 
-        .modal-header h2 {
-            font-size: 1.2rem;
-        }
+.tutup-x {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
 
-        .tutup-x {
-            background: transparent;
-            border: none;
-            color: white;
-            font-size: 28px;
-            cursor: pointer;
-            line-height: 1;
-        }
+.modal-body {
+    padding: 24px;
+    min-height: 190px;
+}
 
-        .modal-body {
-            padding: 24px;
-            min-height: 180px;
-        }
+.ruang-kosong {
+    min-height: 150px;
+}
 
-        .ruang-kosong {
-            min-height: 160px;
-        }
+.modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid #e2e8f0;
+    text-align: right;
+}
 
-        .modal-footer {
-            padding: 16px 24px;
-            text-align: right;
-            border-top: 1px solid #e2e8f0;
-        }
+.btn-tutup {
+    background: var(--utama);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 11px 24px;
+    cursor: pointer;
+}
 
-        .btn-tutup {
-            background: var(--utama);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 10px 22px;
-            cursor: pointer;
-            font-size: 0.95rem;
-        }
+.btn-tutup:hover {
+    background: #1d4ed8;
+}
 
-        .btn-tutup:hover {
-            background: #1d4ed8;
-        }
+@keyframes muncul {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-        @keyframes muncul {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 600px) {
-            body {
-                padding: 12px;
-            }
-
-            h1 {
-                font-size: 1.5rem;
-            }
-
-            .section-header {
-                font-size: 1.1rem;
-            }
-
-            .section-body {
-                padding: 15px;
-            }
-
-            .modal-content {
-                max-height: 90vh;
-            }
-        }
-    </style>
+@media (max-width: 600px) {
+    body { padding: 12px; }
+    h1 { font-size: 1.5rem; }
+    .section-header { font-size: 1.1rem; }
+    .section-body { padding: 15px; }
+}
+</style>
 </head>
 
 <body>
-    <div class="container">
+<div class="container">
 
-        <header>
-            <img
-                src="https://i.postimg.cc/ZRjt64B4/images.jpg"
-                alt="Gambar Pondok Pesantren"
-                class="header-img"
-            >
+<header>
+    <img
+        src="https://i.postimg.cc/ZRjt64B4/images.jpg"
+        alt="Gambar Pondok Pesantren"
+        class="header-img"
+    >
+    <h1>PORTAL KEGIATAN SANTRI PPRM</h1>
+    <p class="subtitle">Sumber Informasi Kegiatan Santri</p>
+</header>
 
-            <h1>PORTAL KEGIATAN SANTRI PPRM</h1>
-            <p class="subtitle">Sumber Informasi Kegiatan Santri</p>
-        </header>
+<!-- HARIAN -->
+<section class="section harian">
+    <div class="section-header">📅 Harian</div>
+    <div class="section-body">
 
-        <!-- HARIAN -->
-        <section class="section harian">
-            <div class="section-header">📅 Harian</div>
-            <div class="section-body">
+        <div class="item" role="button" tabindex="0"
+             data-periode="Harian" data-jenjang="SMP">
+            <div class="item-label">📚 SMP</div>
+            <div class="item-desc">Jadwal dan kegiatan harian santri tingkat SMP</div>
+        </div>
 
-                <div class="item" role="button" tabindex="0"
-                     data-periode="Harian" data-jenjang="SMP">
-                    <div class="item-label">📚 SMP</div>
-                    <div class="item-desc">Jadwal dan kegiatan harian santri tingkat SMP</div>
-                </div>
+        <div class="item" role="button" tabindex="0"
+             data-periode="Harian" data-jenjang="MA">
+            <div class="item-label">📖 MA</div>
+            <div class="item-desc">Jadwal dan kegiatan harian santri tingkat MA</div>
+        </div>
 
-                <div class="item" role="button" tabindex="0"
-                     data-periode="Harian" data-jenjang="MA">
-                    <div class="item-label">📖 MA</div>
-                    <div class="item-desc">Jadwal dan kegiatan harian santri tingkat MA</div>
-                </div>
+        <div class="item" role="button" tabindex="0"
+             data-periode="Harian" data-jenjang="KULIAH">
+            <div class="item-label">🎓 KULIAH</div>
+            <div class="item-desc">Jadwal dan kegiatan harian santri tingkat Kuliah</div>
+        </div>
 
-                <div class="item" role="button" tabindex="0"
-                     data-periode="Harian" data-jenjang="KULIAH">
-                    <div class="item-label">🎓 KULIAH</div>
-                    <div class="item-desc">Jadwal dan kegiatan harian santri tingkat Kuliah</div>
-                </div>
+        <div class="item" role="button" tabindex="0"
+             data-periode="Harian" data-jenjang="KHIDMAH">
+            <div class="item-label">🛠️ KHIDMAH</div>
+            <div class="item-desc">Jadwal dan tugas harian khidmah santri</div>
+        </div>
 
-                <div class="item" role="button" tabindex="0"
-                     data-periode="Harian" data-jenjang="KHIDMAH">
-                    <div class="item-label">🛠️ KHIDMAH</div>
-                    <div class="item-desc">Jadwal dan tugas harian khidmah santri</div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- MINGGUAN -->
-        <section class="section mingguan">
-            <div class="section-header">🗓️ Mingguan</div>
-            <div class="section-body">
-
-                <div class="item" role="button" tabindex="0"
-                     data-periode="Mingguan" data-jenjang="SMP">
-                    <div class="item-label">📚 SMP</div>
-                    <div class="item-desc">Program dan kegiatan rutin setiap minggu — SMP</div>
-                </div>
-
-                <div class="item" role="button" tabindex="0"
-                     data-periode="Mingguan" data-jenjang="MA">
-                    <div class="item-label">📖 MA</div>
-                    <div class="item-desc">Program dan kegiatan rutin setiap minggu — MA</div>
-                </div>
-
-                <div class="item" role="button" tabindex="0"
-                     data-periode="Mingguan" data-jenjang="KULIAH">
-                    <div class="item-label">🎓 KULIAH</div>
-                    <div class="item-desc">Program dan kegiatan rutin setiap minggu — Kuliah</div>
-                </div>
-
-                <div class="item" role="button" tabindex="0"
-                     data-periode="Mingguan" data-jenjang="KHIDMAH">
-                    <div class="item-label">🛠️ KHIDMAH</div>
-                    <div class="item-desc">Penugasan dan evaluasi khidmah mingguan</div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- BULANAN -->
-        <section class="section bulanan">
-            <div class="section-header">📆 Bulanan</div>
-            <div class="section-body">
-
-                <div class="item" role="button" tabindex="0"
-                     data-periode="Bulanan" data-jenjang="SMP">
-                    <div class="item-label">📚 SMP</div>
-                    <div class="item-desc">Target, program dan evaluasi bulanan — SMP</div>
-                </div>
-
-                <div class="item" role="button" tabindex="0"
-                     data-periode="Bulanan" data-jenjang="MA">
-                    <div class="item-label">📖 MA</div>
-                    <div class="item-desc">Target, program dan evaluasi bulanan — MA</div>
-                </div>
-
-                <div class="item" role="button" tabindex="0"
-                     data-periode="Bulanan" data-jenjang="KULIAH">
-                    <div class="item-label">🎓 KULIAH</div>
-                    <div class="item-desc">Target, program dan evaluasi bulanan — Kuliah</div>
-                </div>
-
-                <div class="item" role="button" tabindex="0"
-                     data-periode="Bulanan" data-jenjang="KHIDMAH">
-                    <div class="item-label">🛠️ KHIDMAH</div>
-                    <div class="item-desc">Rencana dan penilaian kinerja khidmah bulanan</div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- TAHUNAN -->
-        <section class="section tahunan">
-            <div class="section-header">🗓️ Tahunan</div>
-            <div class="section-body">
-
-                <div class="item" role="button" tabindex="0"
-                     data-periode="Tahunan" data-jenjang="SMP">
-                    <div class="item-label">📚 SMP</div>
-                    <div class="item-desc">Kalender pendidikan dan agenda tahunan — SMP</div>
-                </div>
-
-                <div class="item" role="button" tabindex="0"
-                     data-periode="Tahunan" data-jenjang="MA">
-                    <div class="item-label">📖 MA</div>
-                    <div class="item-desc">Kalender pendidikan dan agenda tahunan — MA</div>
-                </div>
-
-                <div class="item" role="button" tabindex="0"
-                     data-periode="Tahunan" data-jenjang="KULIAH">
-                    <div class="item-label">🎓 KULIAH</div>
-                    <div class="item-desc">Rencana akademik dan kegiatan tahunan — Kuliah</div>
-                </div>
-
-                <div class="item" role="button" tabindex="0"
-                     data-periode="Tahunan" data-jenjang="KHIDMAH">
-                    <div class="item-label">🛠️ KHIDMAH</div>
-                    <div class="item-desc">Program kerja dan pengembangan jangka panjang</div>
-                </div>
-
-            </div>
-        </section>
-
-        <footer>
-            &copy; 2026 PORTAL KEGIATAN SANTRI PPRM — Semua Hak Dilindungi
-        </footer>
     </div>
+</section>
 
-    <!-- POPUP KEGIATAN -->
-    <div class="modal" id="modalKegiatan"
-         role="dialog" aria-modal="true"
-         aria-labelledby="judulPopup">
+<!-- MINGGUAN -->
+<section class="section mingguan">
+    <div class="section-header">🗓️ Mingguan</div>
+    <div class="section-body">
 
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="judulPopup">Kegiatan Santri</h2>
-                <button class="tutup-x" id="tutupX"
-                        aria-label="Tutup popup">&times;</button>
-            </div>
+        <div class="item" role="button" tabindex="0"
+             data-periode="Mingguan" data-jenjang="SMP">
+            <div class="item-label">📚 SMP</div>
+            <div class="item-desc">Program dan kegiatan rutin setiap minggu — SMP</div>
+        </div>
 
-            <div class="modal-body">
-                <!-- Isi kegiatan bisa ditambahkan di sini nanti -->
-                <div class="ruang-kosong" id="isiKegiatan"></div>
-            </div>
+        <div class="item" role="button" tabindex="0"
+             data-periode="Mingguan" data-jenjang="MA">
+            <div class="item-label">📖 MA</div>
+            <div class="item-desc">Program dan kegiatan rutin setiap minggu — MA</div>
+        </div>
 
-            <div class="modal-footer">
-                <button class="btn-tutup" id="tutupBtn">Tutup</button>
-            </div>
+        <div class="item" role="button" tabindex="0"
+             data-periode="Mingguan" data-jenjang="KULIAH">
+            <div class="item-label">🎓 KULIAH</div>
+            <div class="item-desc">Program dan kegiatan rutin setiap minggu — Kuliah</div>
+        </div>
+
+        <div class="item" role="button" tabindex="0"
+             data-periode="Mingguan" data-jenjang="KHIDMAH">
+            <div class="item-label">🛠️ KHIDMAH</div>
+            <div class="item-desc">Penugasan dan evaluasi khidmah mingguan</div>
+        </div>
+
+    </div>
+</section>
+
+<!-- BULANAN -->
+<section class="section bulanan">
+    <div class="section-header">📆 Bulanan</div>
+    <div class="section-body">
+
+        <div class="item" role="button" tabindex="0"
+             data-periode="Bulanan" data-jenjang="SMP">
+            <div class="item-label">📚 SMP</div>
+            <div class="item-desc">Target, program dan evaluasi bulanan — SMP</div>
+        </div>
+
+        <div class="item" role="button" tabindex="0"
+             data-periode="Bulanan" data-jenjang="MA">
+            <div class="item-label">📖 MA</div>
+            <div class="item-desc">Target, program dan evaluasi bulanan — MA</div>
+        </div>
+
+        <div class="item" role="button" tabindex="0"
+             data-periode="Bulanan" data-jenjang="KULIAH">
+            <div class="item-label">🎓 KULIAH</div>
+            <div class="item-desc">Target, program dan evaluasi bulanan — Kuliah</div>
+        </div>
+
+        <div class="item" role="button" tabindex="0"
+             data-periode="Bulanan" data-jenjang="KHIDMAH">
+            <div class="item-label">🛠️ KHIDMAH</div>
+            <div class="item-desc">Rencana dan penilaian kinerja khidmah bulanan</div>
+        </div>
+
+    </div>
+</section>
+
+<!-- TAHUNAN -->
+<section class="section tahunan">
+    <div class="section-header">🗓️ Tahunan</div>
+    <div class="section-body">
+
+        <div class="item" role="button" tabindex="0"
+             data-periode="Tahunan" data-jenjang="SMP">
+            <div class="item-label">📚 SMP</div>
+            <div class="item-desc">Kalender pendidikan dan agenda tahunan — SMP</div>
+        </div>
+
+        <div class="item" role="button" tabindex="0"
+             data-periode="Tahunan" data-jenjang="MA">
+            <div class="item-label">📖 MA</div>
+            <div class="item-desc">Kalender pendidikan dan agenda tahunan — MA</div>
+        </div>
+
+        <div class="item" role="button" tabindex="0"
+             data-periode="Tahunan" data-jenjang="KULIAH">
+            <div class="item-label">🎓 KULIAH</div>
+            <div class="item-desc">Rencana akademik dan kegiatan tahunan — Kuliah</div>
+        </div>
+
+        <div class="item" role="button" tabindex="0"
+             data-periode="Tahunan" data-jenjang="KHIDMAH">
+            <div class="item-label">🛠️ KHIDMAH</div>
+            <div class="item-desc">Program kerja dan pengembangan jangka panjang</div>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    &copy; 2026 PORTAL KEGIATAN SANTRI PPRM — Semua Hak Dilindungi
+</footer>
+
+</div>
+
+<!-- POPUP ISI KEGIATAN -->
+<div class="modal" id="modalKegiatan"
+     role="dialog" aria-modal="true"
+     aria-labelledby="judulPopup">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="judulPopup">Kegiatan Santri</h2>
+            <button class="tutup-x" id="tutupX"
+                    aria-label="Tutup popup">&times;</button>
+        </div>
+
+        <div class="modal-body">
+            <!-- Isi kegiatan sengaja dikosongkan -->
+            <div class="ruang-kosong" id="isiKegiatan"></div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-tutup" id="tutupBtn">Tutup</button>
         </div>
     </div>
+</div>
 
-    <script>
-        const modal = document.getElementById("modalKegiatan");
-        const judulPopup = document.getElementById("judulPopup");
-        const isiKegiatan = document.getElementById("isiKegiatan");
-        const tutupX = document.getElementById("tutupX");
-        const tutupBtn = document.getElementById("tutupBtn");
+<script>
+const modal = document.getElementById("modalKegiatan");
+const judulPopup = document.getElementById("judulPopup");
+const isiKegiatan = document.getElementById("isiKegiatan");
+const tutupX = document.getElementById("tutupX");
+const tutupBtn = document.getElementById("tutupBtn");
 
-        // Membuka popup saat menu diklik
-        function bukaPopup(item) {
-            const periode = item.dataset.periode;
-            const jenjang = item.dataset.jenjang;
+function bukaPopup(item) {
+    const periode = item.dataset.periode;
+    const jenjang = item.dataset.jenjang;
 
-            judulPopup.textContent = periode + " - " + jenjang;
+    judulPopup.textContent = periode + " - " + jenjang;
 
-            // Kosongkan isi setiap kali menu dibuka
-            isiKegiatan.replaceChildren();
+    // Pastikan isi selalu kosong saat dibuka
+    isiKegiatan.replaceChildren();
 
-            modal.classList.add("active");
-            tutupBtn.focus();
+    modal.classList.add("active");
+    tutupBtn.focus();
+}
+
+// Aktifkan seluruh menu
+document.querySelectorAll(".item").forEach(function(item) {
+    item.addEventListener("click", function() {
+        bukaPopup(item);
+    });
+
+    item.addEventListener("keydown", function(event) {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            bukaPopup(item);
         }
+    });
+});
 
-        // Semua menu dapat diklik
-        document.querySelectorAll(".item").forEach(function(item) {
-            item.addEventListener("click", function() {
-                bukaPopup(item);
-            });
+// Tutup popup
+function tutupPopup() {
+    modal.classList.remove("active");
+}
 
-            // Mendukung tombol Enter dan Spasi
-            item.addEventListener("keydown", function(event) {
-                if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    bukaPopup(item);
-                }
-            });
-        });
+tutupX.addEventListener("click", tutupPopup);
+tutupBtn.addEventListener("click", tutupPopup);
 
-        // Menutup popup
-        function tutupPopup() {
-            modal.classList.remove("active");
-        }
+// Tutup jika bagian luar popup diklik
+modal.addEventListener("click", function(event) {
+    if (event.target === modal) {
+        tutupPopup();
+    }
+});
 
-        tutupX.addEventListener("click", tutupPopup);
-        tutupBtn.addEventListener("click", tutupPopup);
+// Tutup dengan tombol Escape
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape" && modal.classList.contains("active")) {
+        tutupPopup();
+    }
+});
+</script>
 
-        // Menutup jika area gelap di luar popup diklik
-        modal.addEventListener("click", function(event) {
-            if (event.target === modal) {
-                tutupPopup();
-            }
-        });
-
-        // Menutup dengan tombol Escape
-        document.addEventListener("keydown", function(event) {
-            if (event.key === "Escape" && modal.classList.contains("active")) {
-                tutupPopup();
-            }
-        });
-    </script>
 </body>
 </html>
+
 
