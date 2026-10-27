@@ -1,516 +1,344 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PORTAL KEGIATAN SANTRI PPRM</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PORTAL KEGIATAN SANTRI PPRM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-}
+        :root {
+            --utama: #2563eb;
+            --ungu: #8b5cf6;
+            --hijau: #10b981;
+            --oranye: #f59e0b;
+            --teks: #1e293b;
+        }
 
-:root {
-    --utama: #2563eb;
-    --ungu: #8b5cf6;
-    --hijau: #10b981;
-    --oranye: #f59e0b;
-    --teks: #1e293b;
-}
+        body {
+            background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--teks);
+        }
 
-body {
-    background: linear-gradient(135deg, #eef2ff, #e0e7ff);
-    background-attachment: fixed;
-    min-height: 100vh;
-    padding: 20px;
-    color: var(--teks);
-}
+        .container {
+            max-width: 850px;
+            margin: auto;
+        }
 
-.container {
-    max-width: 850px;
-    margin: auto;
-}
+        header {
+            text-align: center;
+            margin-bottom: 35px;
+            padding: 30px 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px #2563eb20;
+        }
 
-header {
-    text-align: center;
-    margin-bottom: 35px;
-    padding: 30px 20px;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px #2563eb20;
-    animation: fadeDariAtas 0.8s ease-out;
-}
+        .header-img {
+            width: 100%;
+            max-height: 220px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
 
-.header-img {
-    width: 100%;
-    max-height: 220px;
-    object-fit: cover;
-    border-radius: 15px;
-    margin-bottom: 20px;
-    transition: transform 0.4s ease;
-}
+        h1 {
+            font-size: 2rem;
+            color: var(--utama);
+            font-weight: 800;
+        }
 
-.header-img:hover {
-    transform: scale(1.02);
-}
+        .subtitle {
+            color: #64748b;
+            margin-top: 8px;
+        }
 
-h1 {
-    font-size: 2rem;
-    color: var(--utama);
-    font-weight: 800;
-}
+        .section {
+            margin-bottom: 25px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 6px 20px #00000012;
+        }
 
-.subtitle {
-    color: #64748b;
-    margin-top: 8px;
-    animation: fadeMasuk 1s ease-out 0.3s both;
-}
+        .section-header {
+            padding: 16px 24px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+        }
 
-.section {
-    margin-bottom: 25px;
-    border-radius: 16px;
-    overflow: hidden;
-    background: white;
-    box-shadow: 0 6px 20px #00000012;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: slideMasuk 0.7s ease forwards;
-}
+        .harian .section-header {
+            background: linear-gradient(90deg, #2563eb, #3b82f6);
+        }
 
-.section:nth-child(2) { animation-delay: 0.1s; }
-.section:nth-child(3) { animation-delay: 0.2s; }
-.section:nth-child(4) { animation-delay: 0.3s; }
-.section:nth-child(5) { animation-delay: 0.4s; }
+        .mingguan .section-header {
+            background: linear-gradient(90deg, #8b5cf6, #a78bfa);
+        }
 
-.section-header {
-    padding: 16px 24px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: white;
-    transition: padding 0.3s ease;
-}
+        .bulanan .section-header {
+            background: linear-gradient(90deg, #10b981, #34d399);
+        }
 
-.section-header:hover {
-    padding-left: 30px;
-}
+        .tahunan .section-header {
+            background: linear-gradient(90deg, #f59e0b, #fbbf24);
+        }
 
-.harian .section-header {
-    background: linear-gradient(90deg, #2563eb, #3b82f6);
-    background-size: 200% 100%;
-    animation: gradientGeser 8s linear infinite;
-}
+        .section-body {
+            padding: 20px;
+        }
 
-.mingguan .section-header {
-    background: linear-gradient(90deg, #8b5cf6, #a78bfa);
-    background-size: 200% 100%;
-    animation: gradientGeser 8s linear infinite;
-}
+        .item {
+            padding: 18px 20px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            background: #f8fafc;
+            border-left: 4px solid;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-.bulanan .section-header {
-    background: linear-gradient(90deg, #10b981, #34d399);
-    background-size: 200% 100%;
-    animation: gradientGeser 8s linear infinite;
-}
+        .item:last-child { margin-bottom: 0; }
 
-.tahunan .section-header {
-    background: linear-gradient(90deg, #f59e0b, #fbbf24);
-    background-size: 200% 100%;
-    animation: gradientGeser 8s linear infinite;
-}
+        .item:hover {
+            transform: translateX(8px);
+            background: #eef2ff;
+        }
 
-.section-body {
-    padding: 20px;
-}
+        .harian .item { border-color: #2563eb; }
+        .mingguan .item { border-color: #8b5cf6; }
+        .bulanan .item { border-color: #10b981; }
+        .tahunan .item { border-color: #f59e0b; }
 
-.item {
-    padding: 18px 20px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    background: #f8fafc;
-    border-left: 4px solid;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-}
+        .item-label {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
 
-.item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-    transition: left 0.5s ease;
-}
+        footer {
+            text-align: center;
+            margin-top: 35px;
+            padding: 20px;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
 
-.item:hover::before {
-    left: 100%;
-}
+        /* POPUP HALAMAN KOSONG — DIPERBESAR */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.5);
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
 
-.item:last-child {
-    margin-bottom: 0;
-}
+        .modal.active { display: flex; }
 
-.item:hover {
-    transform: translateX(8px) scale(1.01);
-    background: #eef2ff;
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
-}
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 900px;
+            height: 85vh;
+            max-height: 850px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+        }
 
-.item:active {
-    transform: translateX(8px) scale(0.98);
-}
+        .modal-header {
+            background: var(--utama);
+            color: white;
+            padding: 22px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.harian .item { border-color: #2563eb; }
-.mingguan .item { border-color: #8b5cf6; }
-.bulanan .item { border-color: #10b981; }
-.tahunan .item { border-color: #f59e0b; }
+        .modal-header h2 { font-size: 1.3rem; }
 
-.item-label {
-    font-weight: bold;
-    font-size: 1.1rem;
-    transition: color 0.2s ease;
-}
+        .tutup-x {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
 
-.item:hover .item-label {
-    color: var(--utama);
-}
+        .tutup-x:hover { transform: rotate(90deg); }
 
-footer {
-    text-align: center;
-    margin-top: 35px;
-    padding: 20px;
-    color: #64748b;
-    font-size: 0.9rem;
-    animation: fadeMasuk 1s ease-out 0.6s both;
-}
+        .modal-body {
+            padding: 30px;
+            flex-grow: 1;
+            background: white;
+        }
 
-/* ====== POPUP ====== */
-.modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-    padding: 10px;
-    background: rgba(15, 23, 42, 0);
-    align-items: center;
-    justify-content: center;
-    transition: background 0.4s ease;
-}
+        .modal-footer {
+            padding: 18px 30px;
+            border-top: 1px solid #e2e8f0;
+            text-align: right;
+        }
 
-.modal.active {
-    display: flex;
-    background: rgba(15, 23, 42, 0.6);
-}
+        .btn-tutup {
+            background: var(--utama);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 32px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
 
-.modal-content {
-    width: 94%;
-    max-width: 650px;
-    height: 90vh;
-    max-height: 92vh;
-    display: flex;
-    flex-direction: column;
-    background: white;
-    border-radius: 18px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-    opacity: 0;
-    transform: scale(0.8) translateY(30px);
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
+        .btn-tutup:hover { background: #1d4ed8; }
 
-.modal.active .modal-content {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-}
-
-.modal-header {
-    background: var(--utama);
-    color: white;
-    padding: 20px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-shrink: 0;
-    border-radius: 18px 18px 0 0;
-}
-
-.modal-header h2 {
-    font-size: 1.2rem;
-}
-
-.tutup-x {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 28px;
-    cursor: pointer;
-    line-height: 1;
-    transition: transform 0.3s ease;
-}
-
-.tutup-x:hover {
-    transform: rotate(90deg);
-}
-
-.modal-body {
-    padding: 20px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.area-ketik {
-    flex-grow: 1;
-    width: 100%;
-    border: 2px solid #e2e8f0;
-    border-radius: 12px;
-    padding: 16px;
-    font-size: 15px;
-    line-height: 1.6;
-    resize: none;
-    outline: none;
-    transition: border-color 0.3s ease;
-    min-height: 300px;
-}
-
-.area-ketik:focus {
-    border-color: var(--utama);
-}
-
-.info-simpan {
-    font-size: 13px;
-    color: #10b981;
-    margin-top: 8px;
-    height: 20px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.info-simpan.terlihat {
-    opacity: 1;
-}
-
-.modal-footer {
-    padding: 16px 24px;
-    border-top: 1px solid #e2e8f0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-shrink: 0;
-}
-
-.btn-simpan {
-    background: var(--hijau);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 24px;
-    font-size: 15px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn-simpan:hover {
-    background: #059669;
-    transform: translateY(-2px);
-}
-
-.btn-tutup {
-    background: var(--utama);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 28px;
-    font-size: 15px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn-tutup:hover {
-    background: #1d4ed8;
-    transform: translateY(-2px);
-}
-
-@keyframes fadeDariAtas {
-    from { opacity: 0; transform: translateY(-30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeMasuk {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes slideMasuk {
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes gradientGeser {
-    0% { background-position: 0% center; }
-    100% { background-position: 200% center; }
-}
-
-@media (max-width: 600px) {
-    body { padding: 12px; }
-    h1 { font-size: 1.5rem; }
-    .section-header { font-size: 1.1rem; }
-    .section-body { padding: 15px; }
-    .modal-content { width: 96%; height: 92vh; }
-}
-</style>
+        @media (max-width: 600px) {
+            body { padding: 12px; }
+            h1 { font-size: 1.5rem; }
+            .section-header { font-size: 1.1rem; }
+            .modal-content { height: 90vh; }
+            .modal-body { padding: 20px; }
+        }
+    </style>
 </head>
-
 <body>
 <div class="container">
+    <header>
+        <img src="https://i.postimg.cc/ZRjt64B4/images.jpg" alt="PPRM" class="header-img">
+        <h1>PORTAL KEGIATAN SANTRI PPRM</h1>
+        <p class="subtitle">✨ Sumber Informasi Kegiatan Santri</p>
+    </header>
 
-<header>
-    <img src="https://i.postimg.cc/ZRjt64B4/images.jpg" alt="PPRM" class="header-img">
-    <h1>PORTAL KEGIATAN SANTRI PPRM</h1>
-    <p class="subtitle">✨ Sumber Informasi Kegiatan Santri</p>
-</header>
+    <!-- HARIAN -->
+    <section class="section harian">
+        <div class="section-header">📅 Harian</div>
+        <div class="section-body">
+            <div class="item" data-judul="📚 SMP — Kegiatan Harian">
+                <div class="item-label">📚 SMP</div>
+            </div>
+            <div class="item" data-judul="📖 MA — Kegiatan Harian">
+                <div class="item-label">📖 MA</div>
+            </div>
+            <div class="item" data-judul="🎓 KULIAH — Kegiatan Harian">
+                <div class="item-label">🎓 KULIAH</div>
+            </div>
+            <div class="item" data-judul="🛠️ KHIDMAH — Kegiatan Harian">
+                <div class="item-label">🛠️ KHIDMAH</div>
+            </div>
+        </div>
+    </section>
 
-<!-- HARIAN -->
-<section class="section harian">
-    <div class="section-header">📅 Harian</div>
-    <div class="section-body">
-        <div class="item" data-key="Harian-SMP">
-            <div class="item-label">📚 SMP</div>
+    <!-- MINGGUAN -->
+    <section class="section mingguan">
+        <div class="section-header">🗓️ Mingguan</div>
+        <div class="section-body">
+            <div class="item" data-judul="📚 SMP — Kegiatan Mingguan">
+                <div class="item-label">📚 SMP</div>
+            </div>
+            <div class="item" data-judul="📖 MA — Kegiatan Mingguan">
+                <div class="item-label">📖 MA</div>
+            </div>
+            <div class="item" data-judul="🎓 KULIAH — Kegiatan Mingguan">
+                <div class="item-label">🎓 KULIAH</div>
+            </div>
+            <div class="item" data-judul="🛠️ KHIDMAH — Kegiatan Mingguan">
+                <div class="item-label">🛠️ KHIDMAH</div>
+            </div>
         </div>
-        <div class="item" data-key="Harian-MA">
-            <div class="item-label">📖 MA</div>
-        </div>
-        <div class="item" data-key="Harian-KULIAH">
-            <div class="item-label">🎓 KULIAH</div>
-        </div>
-        <div class="item" data-key="Harian-KHIDMAH">
-            <div class="item-label">🛠️ KHIDMAH</div>
-        </div>
-    </div>
-</section>
+    </section>
 
-<!-- MINGGUAN -->
-<section class="section mingguan">
-    <div class="section-header">🗓️ Mingguan</div>
-    <div class="section-body">
-        <div class="item" data-key="Mingguan-SMP">
-            <div class="item-label">📚 SMP</div>
+    <!-- BULANAN -->
+    <section class="section bulanan">
+        <div class="section-header">📆 Bulanan</div>
+        <div class="section-body">
+            <div class="item" data-judul="📚 SMP — Kegiatan Bulanan">
+                <div class="item-label">📚 SMP</div>
+            </div>
+            <div class="item" data-judul="📖 MA — Kegiatan Bulanan">
+                <div class="item-label">📖 MA</div>
+            </div>
+            <div class="item" data-judul="🎓 KULIAH — Kegiatan Bulanan">
+                <div class="item-label">🎓 KULIAH</div>
+            </div>
+            <div class="item" data-judul="🛠️ KHIDMAH — Kegiatan Bulanan">
+                <div class="item-label">🛠️ KHIDMAH</div>
+            </div>
         </div>
-        <div class="item" data-key="Mingguan-MA">
-            <div class="item-label">📖 MA</div>
-        </div>
-        <div class="item" data-key="Mingguan-KULIAH">
-            <div class="item-label">🎓 KULIAH</div>
-        </div>
-        <div class="item" data-key="Mingguan-KHIDMAH">
-            <div class="item-label">🛠️ KHIDMAH</div>
-        </div>
-    </div>
-</section>
+    </section>
 
-<!-- BULANAN -->
-<section class="section bulanan">
-    <div class="section-header">📆 Bulanan</div>
-    <div class="section-body">
-        <div class="item" data-key="Bulanan-SMP">
-            <div class="item-label">📚 SMP</div>
+    <!-- TAHUNAN -->
+    <section class="section tahunan">
+        <div class="section-header">🗓️ Tahunan</div>
+        <div class="section-body">
+            <div class="item" data-judul="📚 SMP — Kegiatan Tahunan">
+                <div class="item-label">📚 SMP</div>
+            </div>
+            <div class="item" data-judul="📖 MA — Kegiatan Tahunan">
+                <div class="item-label">📖 MA</div>
+            </div>
+            <div class="item" data-judul="🎓 KULIAH — Kegiatan Tahunan">
+                <div class="item-label">🎓 KULIAH</div>
+            </div>
+            <div class="item" data-judul="🛠️ KHIDMAH — Kegiatan Tahunan">
+                <div class="item-label">🛠️ KHIDMAH</div>
+            </div>
         </div>
-        <div class="item" data-key="Bulanan-MA">
-            <div class="item-label">📖 MA</div>
-        </div>
-        <div class="item" data-key="Bulanan-KULIAH">
-            <div class="item-label">🎓 KULIAH</div>
-        </div>
-        <div class="item" data-key="Bulanan-KHIDMAH">
-            <div class="item-label">🛠️ KHIDMAH</div>
-        </div>
-    </div>
-</section>
+    </section>
 
-<!-- TAHUNAN -->
-<section class="section tahunan">
-    <div class="section-header">🗓️ Tahunan</div>
-    <div class="section-body">
-        <div class="item" data-key="Tahunan-SMP">
-            <div class="item-label">📚 SMP</div>
-        </div>
-        <div class="item" data-key="Tahunan-MA">
-            <div class="item-label">📖 MA</div>
-        </div>
-        <div class="item" data-key="Tahunan-KULIAH">
-            <div class="item-label">🎓 KULIAH</div>
-        </div>
-        <div class="item" data-key="Tahunan-KHIDMAH">
-            <div class="item-label">🛠️ KHIDMAH</div>
-        </div>
-    </div>
-</section>
-
-<footer>© 2026 PORTAL KEGIATAN SANTRI PPRM</footer>
+    <footer>© 2026 PORTAL KEGIATAN SANTRI PPRM</footer>
 </div>
 
-<!-- POPUP EDIT & SIMPAN -->
-<div class="modal" id="modalKegiatan">
+<!-- POPUP HALAMAN KOSONG YANG BESAR -->
+<div class="modal" id="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h2 id="judulPopup">Kegiatan</h2>
-            <button class="tutup-x" id="tutupX">&times;</button>
+            <h2 id="judulModal">Judul</h2>
+            <button class="tutup-x" id="tombolTutup">&times;</button>
         </div>
         <div class="modal-body">
-            <textarea class="area-ketik" id="areaKetik" placeholder="✍️ Ketik jadwal kegiatan di sini..."></textarea>
-            <div class="info-simpan" id="infoSimpan">✅ Tersimpan otomatis!</div>
+            <!-- KOTAK TULISAN DIHAPUS — TINGGAL HALAMAN PUTIH KOSONG -->
         </div>
         <div class="modal-footer">
-            <button class="btn-simpan" id="btnSimpan">💾 Simpan</button>
-            <button class="btn-tutup" id="tutupBtn">Tutup</button>
+            <button class="btn-tutup" id="tombolTutupBawah">Tutup</button>
         </div>
     </div>
 </div>
 
 <script>
-const modal = document.getElementById("modalKegiatan");
-const judulPopup = document.getElementById("judulPopup");
-const areaKetik = document.getElementById("areaKetik");
-const infoSimpan = document.getElementById("infoSimpan");
-const btnSimpan = document.getElementById("btnSimpan");
-const tutupX = document.getElementById("tutupX");
-const tutupBtn = document.getElementById("tutupBtn");
+const modal = document.getElementById('modal');
+const judulModal = document.getElementById('judulModal');
 
-let kunciAktif = "";
-
-// Buka popup
-document.querySelectorAll(".item").forEach(item => {
-    item.addEventListener("click", () => {
-        kunciAktif = item.dataset.key;
-        judulPopup.textContent = kunciAktif.replace("-", " — ");
-        areaKetik.value = localStorage.getItem(kunciAktif) || "";
-        infoSimpan.classList.remove("terlihat");
-        modal.classList.add("active");
+// Buka halaman kosong saat diklik
+document.querySelectorAll('.item').forEach(item => {
+    item.addEventListener('click', () => {
+        judulModal.textContent = item.dataset.judul;
+        modal.classList.add('active');
     });
 });
 
-// Simpan data
-btnSimpan.addEventListener("click", () => {
-    if (!kunciAktif) return;
-    localStorage.setItem(kunciAktif, areaKetik.value);
-    infoSimpan.classList.add("terlihat");
-    setTimeout(() => infoSimpan.classList.remove("terlihat"), 2500);
-});
-
 // Tutup
-function tutupPopup() {
-    modal.classList.remove("active");
-    kunciAktif = "";
+function tutupModal() {
+    modal.classList.remove('active');
 }
-tutupX.addEventListener("click", tutupPopup);
-tutupBtn.addEventListener("click", tutupPopup);
-modal.addEventListener("click", e => e.target === modal && tutupPopup());
-document.addEventListener("keydown", e => e.key === "Escape" && modal.classList.contains("active") && tutupPopup());
-</script>
 
+document.getElementById('tombolTutup').addEventListener('click', tutupModal);
+document.getElementById('tombolTutupBawah').addEventListener('click', tutupModal);
+modal.addEventListener('click', e => {
+    if (e.target === modal) tutupModal();
+});
+</script>
 </body>
 </html>
