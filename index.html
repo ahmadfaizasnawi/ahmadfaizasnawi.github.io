@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PORTAL KEGIATAN SANTRI PPRM</title>
+
     <style>
         * {
             margin: 0;
@@ -25,7 +27,7 @@
         }
 
         body {
-            background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+            background: linear-gradient(135deg, #eef2ff, #e0e7ff);
             min-height: 100vh;
             padding: 20px;
             color: var(--teks);
@@ -63,14 +65,13 @@
         .subtitle {
             color: #64748b;
             margin-top: 8px;
-            font-size: 1rem;
         }
 
         .section {
             margin-bottom: 30px;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
             background: var(--putih);
         }
 
@@ -79,15 +80,23 @@
             font-size: 1.25rem;
             font-weight: 700;
             color: white;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
-        .harian .section-header { background: linear-gradient(90deg, var(--utama), var(--biru-muda)); }
-        .mingguan .section-header { background: linear-gradient(90deg, var(--ungu), #a78bfa); }
-        .bulanan .section-header { background: linear-gradient(90deg, var(--hijau), #34d399); }
-        .tahunan .section-header { background: linear-gradient(90deg, var(--oranye), #fbbf24); }
+        .harian .section-header {
+            background: linear-gradient(90deg, var(--utama), var(--biru-muda));
+        }
+
+        .mingguan .section-header {
+            background: linear-gradient(90deg, var(--ungu), #a78bfa);
+        }
+
+        .bulanan .section-header {
+            background: linear-gradient(90deg, var(--hijau), #34d399);
+        }
+
+        .tahunan .section-header {
+            background: linear-gradient(90deg, var(--oranye), #fbbf24);
+        }
 
         .section-body {
             padding: 20px 24px;
@@ -99,13 +108,22 @@
             border-radius: 10px;
             background: var(--abu-muda);
             border-left: 4px solid;
-            transition: all 0.3s ease;
+            transition: 0.3s;
             cursor: pointer;
         }
 
+        .item:last-child {
+            margin-bottom: 0;
+        }
+
         .item:hover {
-            transform: translateX(6px);
-            background: #f1f5f9;
+            transform: translateX(5px);
+            background: #eaf0f8;
+        }
+
+        .item:focus-visible {
+            outline: 3px solid var(--biru-muda);
+            outline-offset: 2px;
         }
 
         .harian .item { border-left-color: var(--utama); }
@@ -116,7 +134,6 @@
         .item-label {
             font-weight: 600;
             font-size: 1rem;
-            color: var(--teks);
         }
 
         .item-desc {
@@ -133,111 +150,351 @@
             font-size: 0.9rem;
         }
 
+        /* Popup isi kegiatan */
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.65);
+            padding: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-width: 600px;
+            min-height: 280px;
+            max-height: 85vh;
+            overflow-y: auto;
+            border-radius: 18px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+            animation: muncul 0.2s ease;
+        }
+
+        .modal-header {
+            background: var(--utama);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            border-radius: 18px 18px 0 0;
+        }
+
+        .modal-header h2 {
+            font-size: 1.2rem;
+        }
+
+        .tutup-x {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .modal-body {
+            padding: 24px;
+            min-height: 180px;
+        }
+
+        .ruang-kosong {
+            min-height: 160px;
+        }
+
+        .modal-footer {
+            padding: 16px 24px;
+            text-align: right;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .btn-tutup {
+            background: var(--utama);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 22px;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn-tutup:hover {
+            background: #1d4ed8;
+        }
+
+        @keyframes muncul {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         @media (max-width: 600px) {
-            h1 { font-size: 1.5rem; }
-            .section-header { font-size: 1.1rem; }
+            body {
+                padding: 12px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .section-header {
+                font-size: 1.1rem;
+            }
+
+            .section-body {
+                padding: 15px;
+            }
+
+            .modal-content {
+                max-height: 90vh;
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
+
         <header>
-            <img src="https://i.postimg.cc/ZRjt64B4/images.jpg" alt="Gambar Sekolah/Pondok" class="header-img">
+            <img
+                src="https://i.postimg.cc/ZRjt64B4/images.jpg"
+                alt="Gambar Pondok Pesantren"
+                class="header-img"
+            >
+
             <h1>PORTAL KEGIATAN SANTRI PPRM</h1>
             <p class="subtitle">Sumber Informasi Kegiatan Santri</p>
         </header>
 
-        <div class="section harian">
+        <!-- HARIAN -->
+        <section class="section harian">
             <div class="section-header">📅 Harian</div>
             <div class="section-body">
-                <div class="item">
+
+                <div class="item" role="button" tabindex="0"
+                     data-periode="Harian" data-jenjang="SMP">
                     <div class="item-label">📚 SMP</div>
                     <div class="item-desc">Jadwal dan kegiatan harian santri tingkat SMP</div>
                 </div>
-                <div class="item">
+
+                <div class="item" role="button" tabindex="0"
+                     data-periode="Harian" data-jenjang="MA">
                     <div class="item-label">📖 MA</div>
                     <div class="item-desc">Jadwal dan kegiatan harian santri tingkat MA</div>
                 </div>
-                <div class="item">
+
+                <div class="item" role="button" tabindex="0"
+                     data-periode="Harian" data-jenjang="KULIAH">
                     <div class="item-label">🎓 KULIAH</div>
                     <div class="item-desc">Jadwal dan kegiatan harian santri tingkat Kuliah</div>
                 </div>
-                <div class="item">
+
+                <div class="item" role="button" tabindex="0"
+                     data-periode="Harian" data-jenjang="KHIDMAH">
                     <div class="item-label">🛠️ KHIDMAH</div>
                     <div class="item-desc">Jadwal dan tugas harian khidmah santri</div>
                 </div>
-            </div>
-        </div>
 
-        <div class="section mingguan">
+            </div>
+        </section>
+
+        <!-- MINGGUAN -->
+        <section class="section mingguan">
             <div class="section-header">🗓️ Mingguan</div>
             <div class="section-body">
-                <div class="item">
+
+                <div class="item" role="button" tabindex="0"
+                     data-periode="Mingguan" data-jenjang="SMP">
                     <div class="item-label">📚 SMP</div>
                     <div class="item-desc">Program dan kegiatan rutin setiap minggu — SMP</div>
                 </div>
-                <div class="item">
+
+                <div class="item" role="button" tabindex="0"
+                     data-periode="Mingguan" data-jenjang="MA">
                     <div class="item-label">📖 MA</div>
                     <div class="item-desc">Program dan kegiatan rutin setiap minggu — MA</div>
                 </div>
-                <div class="item">
+
+                <div class="item" role="button" tabindex="0"
+                     data-periode="Mingguan" data-jenjang="KULIAH">
                     <div class="item-label">🎓 KULIAH</div>
                     <div class="item-desc">Program dan kegiatan rutin setiap minggu — Kuliah</div>
                 </div>
-                <div class="item">
+
+                <div class="item" role="button" tabindex="0"
+                     data-periode="Mingguan" data-jenjang="KHIDMAH">
                     <div class="item-label">🛠️ KHIDMAH</div>
                     <div class="item-desc">Penugasan dan evaluasi khidmah mingguan</div>
                 </div>
-            </div>
-        </div>
 
-        <div class="section bulanan">
+            </div>
+        </section>
+
+        <!-- BULANAN -->
+        <section class="section bulanan">
             <div class="section-header">📆 Bulanan</div>
             <div class="section-body">
-                <div class="item">
+
+                <div class="item" role="button" tabindex="0"
+                     data-periode="Bulanan" data-jenjang="SMP">
                     <div class="item-label">📚 SMP</div>
-                    <div class="item-desc">Target, program & evaluasi bulanan — SMP</div>
+                    <div class="item-desc">Target, program dan evaluasi bulanan — SMP</div>
                 </div>
-                <div class="item">
+
+                <div class="item" role="button" tabindex="0"
+                     data-periode="Bulanan" data-jenjang="MA">
                     <div class="item-label">📖 MA</div>
-                    <div class="item-desc">Target, program & evaluasi bulanan — MA</div>
+                    <div class="item-desc">Target, program dan evaluasi bulanan — MA</div>
                 </div>
-                <div class="item">
+
+                <div class="item" role="button" tabindex="0"
+                     data-periode="Bulanan" data-jenjang="KULIAH">
                     <div class="item-label">🎓 KULIAH</div>
-                    <div class="item-desc">Target, program & evaluasi bulanan — Kuliah</div>
+                    <div class="item-desc">Target, program dan evaluasi bulanan — Kuliah</div>
                 </div>
-                <div class="item">
+
+                <div class="item" role="button" tabindex="0"
+                     data-periode="Bulanan" data-jenjang="KHIDMAH">
                     <div class="item-label">🛠️ KHIDMAH</div>
                     <div class="item-desc">Rencana dan penilaian kinerja khidmah bulanan</div>
                 </div>
-            </div>
-        </div>
 
-        <div class="section tahunan">
+            </div>
+        </section>
+
+        <!-- TAHUNAN -->
+        <section class="section tahunan">
             <div class="section-header">🗓️ Tahunan</div>
             <div class="section-body">
-                <div class="item">
+
+                <div class="item" role="button" tabindex="0"
+                     data-periode="Tahunan" data-jenjang="SMP">
                     <div class="item-label">📚 SMP</div>
-                    <div class="item-desc">Kalender pendidikan & agenda besar tahunan — SMP</div>
+                    <div class="item-desc">Kalender pendidikan dan agenda tahunan — SMP</div>
                 </div>
-                <div class="item">
+
+                <div class="item" role="button" tabindex="0"
+                     data-periode="Tahunan" data-jenjang="MA">
                     <div class="item-label">📖 MA</div>
-                    <div class="item-desc">Kalender pendidikan & agenda besar tahunan — MA</div>
+                    <div class="item-desc">Kalender pendidikan dan agenda tahunan — MA</div>
                 </div>
-                <div class="item">
+
+                <div class="item" role="button" tabindex="0"
+                     data-periode="Tahunan" data-jenjang="KULIAH">
                     <div class="item-label">🎓 KULIAH</div>
-                    <div class="item-desc">Rencana akademik dan kegiatan besar tahunan — Kuliah</div>
+                    <div class="item-desc">Rencana akademik dan kegiatan tahunan — Kuliah</div>
                 </div>
-                <div class="item">
+
+                <div class="item" role="button" tabindex="0"
+                     data-periode="Tahunan" data-jenjang="KHIDMAH">
                     <div class="item-label">🛠️ KHIDMAH</div>
                     <div class="item-desc">Program kerja dan pengembangan jangka panjang</div>
                 </div>
+
             </div>
-        </div>
+        </section>
 
         <footer>
-            &copy; 2025 PORTAL KEGIATAN SANTRI PPRM — Semua Hak Dilindungi
+            &copy; 2026 PORTAL KEGIATAN SANTRI PPRM — Semua Hak Dilindungi
         </footer>
     </div>
+
+    <!-- POPUP KEGIATAN -->
+    <div class="modal" id="modalKegiatan"
+         role="dialog" aria-modal="true"
+         aria-labelledby="judulPopup">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="judulPopup">Kegiatan Santri</h2>
+                <button class="tutup-x" id="tutupX"
+                        aria-label="Tutup popup">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <!-- Isi kegiatan bisa ditambahkan di sini nanti -->
+                <div class="ruang-kosong" id="isiKegiatan"></div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-tutup" id="tutupBtn">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById("modalKegiatan");
+        const judulPopup = document.getElementById("judulPopup");
+        const isiKegiatan = document.getElementById("isiKegiatan");
+        const tutupX = document.getElementById("tutupX");
+        const tutupBtn = document.getElementById("tutupBtn");
+
+        // Membuka popup saat menu diklik
+        function bukaPopup(item) {
+            const periode = item.dataset.periode;
+            const jenjang = item.dataset.jenjang;
+
+            judulPopup.textContent = periode + " - " + jenjang;
+
+            // Kosongkan isi setiap kali menu dibuka
+            isiKegiatan.replaceChildren();
+
+            modal.classList.add("active");
+            tutupBtn.focus();
+        }
+
+        // Semua menu dapat diklik
+        document.querySelectorAll(".item").forEach(function(item) {
+            item.addEventListener("click", function() {
+                bukaPopup(item);
+            });
+
+            // Mendukung tombol Enter dan Spasi
+            item.addEventListener("keydown", function(event) {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    bukaPopup(item);
+                }
+            });
+        });
+
+        // Menutup popup
+        function tutupPopup() {
+            modal.classList.remove("active");
+        }
+
+        tutupX.addEventListener("click", tutupPopup);
+        tutupBtn.addEventListener("click", tutupPopup);
+
+        // Menutup jika area gelap di luar popup diklik
+        modal.addEventListener("click", function(event) {
+            if (event.target === modal) {
+                tutupPopup();
+            }
+        });
+
+        // Menutup dengan tombol Escape
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Escape" && modal.classList.contains("active")) {
+                tutupPopup();
+            }
+        });
+    </script>
 </body>
 </html>
+
