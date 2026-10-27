@@ -166,11 +166,6 @@ h1 {
     transform: translateX(8px) scale(0.98);
 }
 
-.item:focus-visible {
-    outline: 2px solid var(--utama);
-    outline-offset: 2px;
-}
-
 .harian .item { border-color: #2563eb; }
 .mingguan .item { border-color: #8b5cf6; }
 .bulanan .item { border-color: #10b981; }
@@ -201,7 +196,7 @@ footer {
     animation: fadeMasuk 1s ease-out 0.6s both;
 }
 
-/* ============= POPUP BESAR & ANIMASI ============= */
+/* ============= POPUP ============= */
 .modal {
     display: none;
     position: fixed;
@@ -271,27 +266,67 @@ footer {
 }
 
 .modal-body {
-    padding: 24px;
+    padding: 20px;
     flex-grow: 1;
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 }
 
-.ruang-kosong {
+.area-ketik {
+    flex-grow: 1;
+    width: 100%;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 15px;
+    line-height: 1.6;
+    resize: none;
+    outline: none;
+    transition: border-color 0.3s ease;
     min-height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #94a3b8;
-    font-style: italic;
-    text-align: center;
-    animation: fadeMasuk 0.6s ease-out 0.2s both;
+}
+
+.area-ketik:focus {
+    border-color: var(--utama);
+}
+
+.info-simpan {
+    font-size: 13px;
+    color: #10b981;
+    margin-top: 8px;
+    height: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.info-simpan.terlihat {
+    opacity: 1;
 }
 
 .modal-footer {
     padding: 16px 24px;
     border-top: 1px solid #e2e8f0;
-    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     flex-shrink: 0;
+}
+
+.btn-simpan {
+    background: var(--hijau);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-simpan:hover {
+    background: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
 }
 
 .btn-tutup {
@@ -303,7 +338,6 @@ footer {
     font-size: 15px;
     cursor: pointer;
     transition: all 0.3s ease;
-    transform-origin: center;
 }
 
 .btn-tutup:hover {
@@ -312,20 +346,10 @@ footer {
     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
-.btn-tutup:active {
-    transform: translateY(0);
-}
-
 /* ============= KEYFRAMES ============= */
 @keyframes fadeDariAtas {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeMasuk {
@@ -334,10 +358,7 @@ footer {
 }
 
 @keyframes slideMasuk {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes gradientGeser {
@@ -346,14 +367,8 @@ footer {
 }
 
 @keyframes teksMasuk {
-    from {
-        opacity: 0;
-        transform: translateX(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
 }
 
 @media (max-width: 600px) {
@@ -361,11 +376,7 @@ footer {
     h1 { font-size: 1.5rem; }
     .section-header { font-size: 1.1rem; }
     .section-body { padding: 15px; }
-    
-    .modal-content {
-        width: 96%;
-        height: 92vh;
-    }
+    .modal-content { width: 96%; height: 92vh; }
 }
 </style>
 </head>
@@ -481,7 +492,7 @@ footer {
 
 </div>
 
-<!-- POPUP -->
+<!-- POPUP BISA EDIT & SIMPAN -->
 <div class="modal" id="modalKegiatan" role="dialog" aria-modal="true" aria-labelledby="judulPopup">
     <div class="modal-content">
         <div class="modal-header">
@@ -489,11 +500,11 @@ footer {
             <button class="tutup-x" id="tutupX" aria-label="Tutup popup">&times;</button>
         </div>
         <div class="modal-body">
-            <div class="ruang-kosong" id="isiKegiatan">
-                📝 Di sini nanti bisa diisi jadwal kegiatan masing-masing jenjang
-            </div>
+            <textarea class="area-ketik" id="areaKetik" placeholder="✍️ Ketik jadwal kegiatan di sini..."></textarea>
+            <div class="info-simpan" id="infoSimpan">✅ Tersimpan otomatis!</div>
         </div>
         <div class="modal-footer">
+            <button class="btn-simpan" id="btnSimpan">💾 Simpan</button>
             <button class="btn-tutup" id="tutupBtn">Tutup</button>
         </div>
     </div>
@@ -502,46 +513,45 @@ footer {
 <script>
 const modal = document.getElementById("modalKegiatan");
 const judulPopup = document.getElementById("judulPopup");
-const isiKegiatan = document.getElementById("isiKegiatan");
+const areaKetik = document.getElementById("areaKetik");
+const infoSimpan = document.getElementById("infoSimpan");
+const btnSimpan = document.getElementById("btnSimpan");
 const tutupX = document.getElementById("tutupX");
 const tutupBtn = document.getElementById("tutupBtn");
 
+let kunciSaatIni = "";
+
+// Buka kotak & ambil data yang sudah disimpan sebelumnya
 function bukaPopup(item) {
     const periode = item.dataset.periode;
     const jenjang = item.dataset.jenjang;
+    
+    kunciSaatIni = `kegiatan-${periode}-${jenjang}`;
     judulPopup.textContent = periode + " - " + jenjang;
-    isiKegiatan.replaceChildren();
+    
+    // Ambil yang tersimpan, kalau belum ada kasih pesan awal
+    const tersimpan = localStorage.getItem(kunciSaatIni);
+    areaKetik.value = tersimpan || "";
+    
+    infoSimpan.classList.remove("terlihat");
     modal.classList.add("active");
-    tutupBtn.focus();
+    areaKetik.focus();
 }
 
-document.querySelectorAll(".item").forEach(function(item) {
-    item.addEventListener("click", function() {
-        bukaPopup(item);
-    });
-    item.addEventListener("keydown", function(event) {
-        if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            bukaPopup(item);
-        }
-    });
-});
+// Simpan ke penyimpanan HP/browser
+function simpanData() {
+    if (!kunciSaatIni) return;
+    localStorage.setItem(kunciSaatIni, areaKetik.value);
+    
+    infoSimpan.classList.add("terlihat");
+    setTimeout(() => infoSimpan.classList.remove("terlihat"), 2500);
+}
 
+// Tutup kotak
 function tutupPopup() {
     modal.classList.remove("active");
+    kunciSaatIni = "";
 }
 
-tutupX.addEventListener("click", tutupPopup);
-tutupBtn.addEventListener("click", tutupPopup);
-
-modal.addEventListener("click", function(event) {
-    if (event.target === modal) tutupPopup();
-});
-
-document.addEventListener("keydown", function(event) {
-    if (event.key === "Escape" && modal.classList.contains("active")) tutupPopup();
-});
-</script>
-
-</body>
-</html>
+// Buka semua item yang bisa diklik
+    
